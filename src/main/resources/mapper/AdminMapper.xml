@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dehe.mapper.AdminMapper">
+
+    <select id="findBynameandPwd" resultType="com.dehe.domain.AdminUser">
+        select * from adminuser where adminname=#{adminname} and adminpass=#{adminpass}
+    </select>
+    <select id="selectuser" resultType="com.dehe.domain.User">
+        select * from usertable where username=#{username} and phone=#{phone}
+    </select>
+
+    <delete id="deleteuseripaddress">
+        delete from usertable where ipaddress=#{ipaddress}
+    </delete>
+    
+    <insert id="insertuser" useGeneratedKeys="true" keyProperty="id"  keyColumn="id">
+             insert  into  usertable values (null,#{username},#{userhead},#{time},#{ipaddress},#{regionName},#{city},#{phone},#{oemid})
+    </insert>
+
+    <update id="updateuser">
+        update usertable set time=#{time},ipaddress=#{ipaddress} where id=#{id}
+    </update>
+
+    <update id="updateadmintime">
+        update adminuser set updatetime=#{time} where adminname=#{name}
+    </update>
+    <select id="selectfrom" resultType="com.dehe.domain.User">
+        SELECT * from usertable where oemid=#{oemid}
+    </select>
+    <select id="selectmessagestate" resultType="java.lang.Integer">
+        select COUNT(state) from message where infrom=#{infrom} and state=1
+    </select>
+    <insert id="InsertinMessage">
+        INSERT into message VALUES(#{inMessage.infrom},#{inMessage.Addressee},#{inMessage.content},#{inMessage.time},#{state},#{inMessage.fileurl},#{inMessage.userid})
+    </insert>
+
+    <select id="selectmessage" resultType="com.dehe.model.InMessage">
+        select * from  message where Addressee=#{to}
+    </select>
+    <update id="updatemessage">
+        update message set state=0 where Addressee=#{to} and infrom=#{infrom}
+    </update>
+    <delete id="deleteallInMessage">
+        Delete from message  where 1=1
+    </delete>
+    
+    <select id="selectip" resultType="com.dehe.model.IPClass">
+        select * from iptabel where ipaddress=#{ipaddress}
+    </select>
+    <insert id="installip">
+      insert  into  iptabel VALUES(#{ipaddress},#{frequency})
+    </insert>
+    <update id="updateip">
+        update iptabel set frequency=frequency+1 where ipaddress=#{ipaddress}
+    </update>
+    <select id="selecthead" resultType="java.lang.String">
+        select userhead from usertable where username=#{username}
+    </select>
+    <delete id="deletaallfrom">
+        Delete from usertable  where 1=1
+    </delete>
+    <delete id="deletefrom" >
+         Delete  from usertable where username=#{username}
+    </delete>
+    
+    <delete id="deleteImessage">
+         Delete  from message where infrom=#{infrom} and Addressee=#{Addressee}
+    </delete>
+    
+    <delete id="deletealliptable">
+        DELETE  from iptabel where 1=1
+    </delete>
+</mapper>

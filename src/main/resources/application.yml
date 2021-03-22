@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: 865902964yjw
+    url: jdbc:mysql://rm-bp1l0r8882g39kz5p2o.mysql.rds.aliyuncs.com:3306/customer-service?serverTimezone=Asia/Shanghai
+  redis:
+    database: 0
+    host: 182.92.90.129
+    port: 6379
+    password: 123321
+    timeout: 3000
+    jedis:
+      pool:
+        max-active: 2000
+        max-idle: 200
+        max-wait: 1000
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  config-locations: classpath:mybatis-config.xml
+
