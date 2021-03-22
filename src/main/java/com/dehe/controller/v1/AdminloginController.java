@@ -1,14 +1,11 @@
 package com.dehe.controller.v1;
 
-import com.dehe.domain.User;
+
 import com.dehe.model.LoginRequest;
-import com.dehe.service.AdminService;
 import com.dehe.service.impl.AdminServiceImpl;
-import com.dehe.utils.JWTUtils;
 import com.dehe.utils.JsonData;
 import com.dehe.utils.RedisClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
